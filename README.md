@@ -1,8 +1,6 @@
-# Shadowless Chrono
+# Hide TM Chat Always
 
-Disables the chrono's drop shadow (well, technically it's an emboss).
-
-Blame bmx22c for this plugin.
+Hides the in-game chat -- intended as a workaround for the BetterChat bug where the in-game chat sometimes stays visible.
 
 License: Public Domain
 
