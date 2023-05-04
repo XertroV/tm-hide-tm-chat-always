@@ -20,7 +20,10 @@ void CMapLoop() {
         yield();
         while (app.CurrentPlayground is null) yield();
         AwaitGetMLObjs();
-        while (app.CurrentPlayground !is null) yield();
+        while (app.CurrentPlayground !is null) {
+            UpdateChatVis();
+            yield();
+        }
         @FrameChat = null;
         count = 0;
     }
@@ -51,13 +54,19 @@ CControlBase@ FindFrameChild(CControlContainer@ parent, string[] &in path, uint 
 
 uint count = 0;
 void AwaitGetMLObjs() {
-    auto currPg = cast<CSmArenaClient>(GetApp().CurrentPlayground);
+    auto app = GetApp();
+    auto currPg = (app.CurrentPlayground);
     if (currPg is null) throw('null pg');
     while (currPg.Interface is null || currPg.Interface.InterfaceRoot is null) yield();
     count = 0;
-    while (FrameChat is null && GetApp().CurrentPlayground !is null) {
+    while (FrameChat is null && app.CurrentPlayground !is null) {
         sleep(50);
-        @FrameChat = FindFrameChild(currPg.Interface.InterfaceRoot, {"FrameInGameBase", "FrameChat"});
+        if (app.CurrentPlayground is null) break;
+        if (app.CurrentPlayground.Interface is null) continue;
+        auto pg = app.CurrentPlayground;
+        auto iface = pg.Interface;
+        auto root = iface.InterfaceRoot;
+        @FrameChat = FindFrameChild(root, {"FrameInGameBase", "FrameChat"});
         if (FrameChat !is null) break;
         count++;
         // if (FrameChat is null && count < 50) trace('not found');
@@ -70,13 +79,15 @@ void AwaitGetMLObjs() {
 }
 
 void UpdateChatVis() {
-    if (FrameChat is null) throw('unexpected null FrameChat');
+    if (FrameChat is null) return;
+    if (!FrameChat.IsVisible) return;
     FrameChat.Hide();
     trace('Hid the chat frame');
 }
 
 void ResetChatVis() {
     if (FrameChat is null) return;
+    if (FrameChat.IsVisible) return;
     FrameChat.Show();
     trace('Showed the chat frame');
 }
