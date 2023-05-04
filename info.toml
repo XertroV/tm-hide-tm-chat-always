@@ -2,7 +2,7 @@
 name     = "Hide TM Chat Always"
 author   = "XertroV"
 category = "Utilities"
-version  = "0.1.2"
+version  = "0.1.3"
 siteid   = 376
 
 [script]
