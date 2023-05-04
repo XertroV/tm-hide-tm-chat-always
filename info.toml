@@ -1,0 +1,10 @@
+[meta]
+name     = "Hide TM Chat Always"
+author   = "XertroV"
+category = "Utilities"
+version  = "0.1.2"
+siteid   = 376
+
+[script]
+#__DEFINES__
+# dependencies = ["Camera", "VehicleState"]
