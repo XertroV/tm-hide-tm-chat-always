@@ -8,6 +8,6 @@ Authors: XertroV
 
 Suggestions/feedback: @XertroV on Openplanet discord
 
-Code/issues: [https://github.com/XertroV/tm-shadowless-chrono](https://github.com/XertroV/tm-shadowless-chrono)
+Code/issues: [https://github.com/XertroV/tm-hide-tm-chat-always](https://github.com/XertroV/tm-hide-tm-chat-always)
 
 GL HF
